@@ -6,9 +6,35 @@
  * Made By MaterializeCSS.com
  */
 
-.icon-block {
+
+ .icon-block {
   padding: 0 15px;
 }
 .icon-block .material-icons {
 	font-size: inherit;
+}
+
+#mainContainer{
+  margin-top: 100px;
+}
+.tabs{
+  margin-bottom: 20px;
+}
+.reg-btn{
+  color: black;
+  z-index: 0;
+}
+
+#minutesEvery, #minutesStart, #minutesFrom, #minutesTo  {
+  width: 40px;
+}
+
+input .with-gap {
+  display: inline-flex;
+  align-items: center;
+}
+
+[type="radio"]:not(:checked) + span,
+[type="radio"]:checked + span {
+  display: inline;
 }
