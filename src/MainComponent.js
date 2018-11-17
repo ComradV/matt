@@ -4,7 +4,7 @@ import Select from 'react-select';
 const generateOptions = num => {
   const result = [];
   for(let i = 1; i < num; i++){
-    result.push({value: i-1, label: i-1})
+    result.push({value: i-1, label: ""+(i-1)})
   }
   return result;
 }
