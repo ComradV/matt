@@ -1,10 +1,33 @@
 import React from 'react';
 import Select from 'react-select';
 
+const customSelectStyles = {
+  control: (provided, state) => ({
+    ...provided,
+    width: 350,
+    height: 30,
+  }),
+  multiValue: (provided) => ({
+    ...provided,
+    lineHeight: 1,
+  })
+}
+
+const divStyle = {
+  display: "inline-block",
+}
+
+const leftRegButton = {
+  marginLeft: 10,
+}
+const rightRegButton = {
+  marginRight: 10,
+}
+
 const generateOptions = num => {
   const result = [];
-  for(let i = 1; i < num; i++){
-    result.push({value: i-1, label: ""+(i-1)})
+  for (let i = 1; i < num; i++) {
+    result.push({ value: i - 1, label: "" + (i - 1) })
   }
   return result;
 }
@@ -82,14 +105,14 @@ class mainComponent extends React.Component {
                 <p>
                   <label>
                     <input className="with-gap" name="groupMin" type="radio" onChange={this.optionMinutesChangeHandler} />
-                    <span>Every
-                    <a className="waves-effect waves-light btn blue-grey lighten-5 reg-btn">-</a>
+                    <span>Every 
+                    <a style={leftRegButton} className="waves-effect waves-light btn blue-grey lighten-5 reg-btn">-</a>
                       <input type="text" id="minutesEvery" name="minutesEvery" onChange={this.minutesEveryChangeHandler} value={this.state.minutesEvery} className="center-align" />
-                      <a className="waves-effect waves-light btn blue-grey lighten-5 reg-btn">+</a>
-                      minute(s) starting at minute
-                    <a className="waves-effect waves-light btn blue-grey lighten-5 reg-btn">-</a>
+                      <a style={rightRegButton} className="waves-effect waves-light btn blue-grey lighten-5 reg-btn">+</a>
+                       minute(s) starting at minute 
+                    <a style={leftRegButton} className="waves-effect waves-light btn blue-grey lighten-5 reg-btn">-</a>
                       <input type="text" id="minutesStart" name="minutesStart" onChange={this.minutesStartChangeHandler} value={this.state.minutesStart} className="center-align" />
-                      <a className="waves-effect waves-light btn blue-grey lighten-5 reg-btn">+</a>
+                      <a style={rightRegButton} className="waves-effect waves-light btn blue-grey lighten-5 reg-btn">+</a>
 
                     </span>
                   </label>
@@ -99,29 +122,31 @@ class mainComponent extends React.Component {
                 <div>
                   <label>
                     <input className="with-gap" name="groupMin" type="radio" onChange={this.optionMinutesChangeHandler} />
-                    <span>Specific minute (choose one or many)</span>
-                  </label>
-              <Select
-                value={selectedMinutesOption}
-                onChange={this.handleSelectMinutesChange}
-                options={optionsMinutes}
-                isMulti
-                closeMenuOnSelect={false}
-              />
+                    <span>Specific minute (choose one or many): </span>
+                    </label>
+                    <div style={divStyle}>
+                      <Select
+                        value={selectedMinutesOption}
+                        onChange={this.handleSelectMinutesChange}
+                        options={optionsMinutes}
+                        isMulti
+                        styles={customSelectStyles}
+                        closeMenuOnSelect={false}
+                      /> </div>
                 </div>
               </div>
               <div >
                 <p>
                   <label>
                     <input className="with-gap" name="groupMin" type="radio" onChange={this.optionMinutesChangeHandler} />
-                    <span>Every minute between
-                    <a className="waves-effect waves-light btn blue-grey lighten-5 reg-btn">-</a>
+                    <span>Every minute between 
+                    <a style={leftRegButton} className="waves-effect waves-light btn blue-grey lighten-5 reg-btn">-</a>
                       <input type="text" id="minutesFrom" name="minutesFrom" value="0" className="center-align" />
-                      <a className="waves-effect waves-light btn blue-grey lighten-5 reg-btn">+</a>
-                      and
-                    <a className="waves-effect waves-light btn blue-grey lighten-5 reg-btn">-</a>
+                      <a style={rightRegButton} className="waves-effect waves-light btn blue-grey lighten-5 reg-btn">+</a>
+                       and 
+                    <a style={leftRegButton} className="waves-effect waves-light btn blue-grey lighten-5 reg-btn">-</a>
                       <input type="text" id="minutesTo" name="minutesTo" value="0" className="center-align" />
-                      <a className="waves-effect waves-light btn blue-grey lighten-5 reg-btn">+</a>
+                      <a style={rightRegButton} className="waves-effect waves-light btn blue-grey lighten-5 reg-btn">+</a>
 
                     </span> </label>
                 </p>
@@ -132,7 +157,6 @@ class mainComponent extends React.Component {
           <div id="hours" className="row">
 
           </div>
-
         </div>
 
       </div>
