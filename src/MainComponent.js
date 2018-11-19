@@ -4,8 +4,7 @@ import Select from 'react-select';
 const customSelectStyles = {
   control: (provided, state) => ({
     ...provided,
-    width: 350,
-    height: 30,
+    width: 250,
   }),
   multiValue: (provided) => ({
     ...provided,
@@ -124,7 +123,7 @@ class mainComponent extends React.Component {
                     <input className="with-gap" name="groupMin" type="radio" onChange={this.optionMinutesChangeHandler} />
                     <span>Specific minute (choose one or many): </span>
                     </label>
-                    <div style={divStyle}>
+                    <div className="select-element" style={divStyle}>
                       <Select
                         value={selectedMinutesOption}
                         onChange={this.handleSelectMinutesChange}

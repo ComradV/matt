@@ -38,3 +38,13 @@ input .with-gap {
 [type="radio"]:checked + span {
   display: inline;
 }
+
+.select-element input[type=text] {
+  height: 1rem;
+  margin-bottom: 0;
+}
+.select-element .input-container {
+  margin:0;
+  padding:0;
+
+}
