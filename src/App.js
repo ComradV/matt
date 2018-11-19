@@ -1,22 +1,13 @@
 import React, { Component } from 'react';
-// import './App.css';
-// import './css/materialize.css';
-// import './css/style.css';
-import MainComponent from './MainComponent';
+import MainComponent from './components/MainComponent';
 
 class App extends Component {
-  state = {
-    value: "20",
-  }
-  changeHandler = event => {
-    this.setState({ value: event.target.value })
-  }
 
   render() {
     return (
       <React.Fragment>
         <div className="App">
-          <MainComponent value={this.state.value} changeHandler={this.changeHandler} />
+          <MainComponent />
         </div>
       </React.Fragment>
     );
@@ -24,3 +15,4 @@ class App extends Component {
 }
 
 export default App;
+
