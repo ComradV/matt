@@ -1,94 +1,39 @@
 import React from 'react';
 import UserTab from './UserTab.js';
-import SettingsTab from './SettingsTab.js';
+import MinutesTab from './MinutesTab.js';
+import DaysTab from './DaysTab.js';
 
 class mainComponent extends React.Component {
 
   state = {
-    duration: "20",
-    minuteEvery: 0,
-    minuteStart: 0,
-    minuteSelectedOption: null,
-    minuteBetweenStart: 0,
-    minuteBetweenEnd: 0,
-    hourEvery: 0,
-    hourStart: 0,
-    hourSelectedOption: null,
-    hourBetweenStart: 0,
-    hourBetweenEnd: 0,
-  }
-  increaseHandler = (name) => {
-    return event => {
-      this.setState((state) => {
-        return { [name]: state[name] + 1 }
-      })
-    }
-  }
+    duration: "20",   
 
-  changeHandler = (name) => {
-    return event => {
-      this.setState({
-        [name]: event.target.value,
-      }
-      )
-    }
-  }
+    everyMinute2:1,   
+    everyMinuteStart2:0,
+    minutesSelected3:null,
+    minuteBetweenStart4: 0,
+    minuteBetweenEnd4: 0,
 
-  decreaseHandler = (name) => {
-    return event => {
-      this.setState((state) => {
-        return {
-          [name]: (state[name] < 1) ?
-            0 :
-            state[name] - 1
-        }
-      })
+    everyDay2: 1, 
+    daysSelected2: null,
+    everyDay3: 1,
+    everyDayStart3: 1,
+    daysSelected4: null,
+    daysSelected5: null,
+    daysSelected8: null,
+    dayBefore10: 1,
+    nearestWeekday11:1,
+    numberWeekday12: 1,
+    daysSelected12: null,
+  }
+  setHandler = (name) => {
+    return value => {
+      this.setState({ [name]: value })
     }
   }
 
   durationChangeHandler = event => {
     this.setState({ duration: event.target.value })
-  }
-
-  selectHandler = (name) => {
-    return selectedOption => {
-      this.setState({
-        [name]: selectedOption,
-      }
-      )
-    }
-  }
-  /////////////////////////////////////////////
-  // handleSelectMinutesChange = (selectedMinutesOption) => {
-  //   this.setState({ selectedMinutesOption });
-  //   console.log(`Option selected:`, selectedMinutesOption);
-  // }
-  // handleSelectHoursChange = (selectedHoursOption) => {
-  //   this.setState({ selectedHoursOption });
-  //   console.log(`Option selected:`, selectedHoursOption);
-  // }
-  // optionHoursChangeHandler = (event) => {
-  //   console.log('Hours: ' + event);
-  // }
-  // optionMinutesChangeHandler = (event) => {
-  //   console.log('Minutes: ' + event);
-  // }
-  // minutesEveryChangeHandler = (event) => {
-  //   console.log('MinutesEvery: ' + event);
-  // }
-  // minutesStartChangeHandler = (event) => {
-  //   console.log('MinutesStart: ' + event);
-  // }
-  radioSelectHandler = (event) => {
-    console.log('ch!');
-    this.setState({
-      radioSelectedOption: event.target.dataset.option,
-    })
-  }
-  setRadioOption = (option) => {
-    this.setState({
-      radioSelectedOption: option,
-    })
   }
 
   render() {
@@ -99,7 +44,7 @@ class mainComponent extends React.Component {
           <ul className="tabs">
             <li className="tab col s2 offset-s3"><a href="#user">User</a></li>
             <li className="tab col s2"><a className="active" href="#minute">Minutes</a></li>
-            <li className="tab col s2"><a href="#hour">Hours</a></li>
+            <li className="tab col s2"><a href="#day">Days</a></li>
           </ul>
           <UserTab
             value={this.state.duration}
@@ -108,72 +53,26 @@ class mainComponent extends React.Component {
             max="60"
             name="duration"
           />
-          <SettingsTab
-            increaseHandler={this.increaseHandler}
-            decreaseHandler={this.decreaseHandler}
-            changeHandler={this.changeHandler}
-            selectHandler={this.selectHandler}
-
-            startValue={this.state.minuteStart}
-            everyValue={this.state.minuteEvery}
-            selectedOption={this.state.minuteSelectedOption}
-            name="minute"
-            range={60}
-            valueBetweenStart={this.state.minuteBetweenStart}
-            valueBetweenEnd={this.state.minuteBetweenEnd}
+          <MinutesTab
+            setHandler={this.setHandler}
+            regulatedNames={["everyMinute2","everyMinuteStart2","minuteBetweenStart4","minuteBetweenEnd4"]}
+            regulatedValues={["everyMinute2","everyMinuteStart2","minuteBetweenStart4","minuteBetweenEnd4"].map(name => this.state[name])}
+            selectedNames={["minutesSelected3"]}
+            selectedValues={["minutesSelected3"].map(name => this.state[name])}
           />
 
-          <SettingsTab
-            increaseHandler={this.increaseHandler}
-            decreaseHandler={this.decreaseHandler}
-            changeHandler={this.changeHandler}
-            selectHandler={this.selectHandler}
-
-            startValue={this.state.hourStart}
-            everyValue={this.state.hourEvery}
-            selectedOption={this.state.hourSelectedOption}
-            name="hour"
-            range={24}
-            valueBetweenStart={this.state.hourBetweenStart}
-            valueBetweenEnd={this.state.hourBetweenEnd}
+          <DaysTab
+            setHandler={this.setHandler}
+            regulatedNames={["everyDay2","everyDay3","everyDayStart3","dayBefore10","nearestWeekday11","numberWeekday12"]}
+            regulatedValues={["everyDay2","everyDay3","everyDayStart3","dayBefore10","nearestWeekday11","numberWeekday12"].map(name => this.state[name])}
+            selectedNames={["daysSelected2", "daysSelected4", "daysSelected5", "daysSelected8", "daysSelected12"]}
+            selectedValues={["daysSelected2", "daysSelected4", "daysSelected5", "daysSelected8", "daysSelected12"].map(name => this.state[name])}
           />
         </div>
 
       </div>
     )
-    // return (
-    //   <div className="container">
-    //     <div className="row">
-
-    //       <ul className="tabs">
-    //         <li className="tab col s4"><a className="active" href="#user">User!</a></li>
-    //         <li className="tab col s4"><a href="#minutes">Minutes</a></li>
-    //         <li className="tab col s4"><a href="#hours">Hours</a></li>
-    //       </ul>
-    //       <div id="user" className="col s12">
-    //         <form >
-    //           <div className="input-field col s6 offset-s3">
-    //             <input id="first_name" type="text" className="validate"></input>
-    //             <label htmlFor="first_name">Your name</label>
-    //           </div>
-    //           <div className="input-field col s6 offset-s3">
-    //             <p className="range-field">
-    //               <label htmlFor="duration">Duration</label>
-    //               <input type="range" id="duration" name="duration" min="0" max="60" value={value} onChange={changeHandler} />
-    //             </p>
-    //           </div>
-    //         </form>
-
-    //       </div>
-    //       <div id="minutes" className="row">
-    //       </div>
-    //       <div id="hours" className="row">
-    //         <h1>hours</h1>
-    //       </div>
-
-    //     </div>
-    //   </div>
-    // )
+    
   }
 }
 

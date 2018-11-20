@@ -17,63 +17,61 @@ const divStyle = {
     display: "inline-block",
 }
 
-const generateOptions = num => {
+const generateOptions = (start, end) => {
     const result = [];
-    for (let i = 0; i < num; i++) {
+    for (let i = start; i <= end; i++) {
         result.push({ value: i, label: "" + i })
     }
     return result;
 }
 
+const minutesOptions = generateOptions(0, 59);
 
-const SettingsTab = ({ increaseHandler, decreaseHandler, changeHandler, name, startValue, everyValue, selectedOption, range, selectHandler, valueBetweenStart, valueBetweenEnd }) => {
-    const options = generateOptions(range);
+
+const SettingsTab = ({ regulatedValues, regulatedNames, setHandler, selectedValues, selectedNames }) => {
     return (
-        <div id={name} className="row">
+        <div id="minute" className="row">
             <form className="col s6 offset-s3">
-                <div >
+                <div className="option">
                     <p>
                         <label>
                             <input className="with-gap" name="optionSelector" type="radio" />
-                            <span>Every {name}</span>
+                            <span>Every minute</span>
                         </label>
                     </p>
                 </div>
-                <div >
+                <div className="option">
                     <p>
                         <label>
                             <input className="with-gap" name="optionSelector" type="radio" />
                             <span>Every
                                 <Regulator
-                                    increaseHandler={increaseHandler}
-                                    decreaseHandler={decreaseHandler}
-                                    value={everyValue}
-                                    name={name + 'Every'}
-                                    changeHandler={changeHandler}
+                                    setHandler={setHandler}
+                                    value={regulatedValues[0]}
+                                    name={regulatedNames[0]}
+                                    min={1}
                                 />
-                                {name}(s) starting at {name}
+                                minute(s) starting at minute
                                 <Regulator
-                                    increaseHandler={increaseHandler}
-                                    decreaseHandler={decreaseHandler}
-                                    value={startValue}
-                                    name={name + 'Start'}
-                                    changeHandler={changeHandler}
+                                    setHandler={setHandler}
+                                    value={regulatedValues[1]}
+                                    name={regulatedNames[1]}
                                 />
                             </span>
                         </label>
                     </p>
                 </div>
-                <div >
+                <div className="option">
                     <div>
                         <label>
                             <input className="with-gap" name="optionSelector" type="radio" />
-                            <span>Specific {name} (choose one or many): </span>
+                            <span>Specific minute (choose one or many): </span>
                         </label>
                         <div className="select-element" style={divStyle} >
                             <Select
-                                value={selectedOption}
-                                onChange={selectHandler(name + 'SelectedOption')}
-                                options={options}
+                                value={selectedValues[0]}
+                                onChange={setHandler(selectedNames[0])}
+                                options={minutesOptions}
                                 isMulti
                                 styles={customSelectStyles}
                                 closeMenuOnSelect={false}
@@ -81,25 +79,23 @@ const SettingsTab = ({ increaseHandler, decreaseHandler, changeHandler, name, st
                         </div>
                     </div>
                 </div>
-                <div >
+                <div className="option">
                     <p>
                         <label>
                             <input className="with-gap" name="optionSelector" type="radio" />
-                            <span>Every {name} between
+                            <span>Every minute between
                                         <Regulator
-                                    increaseHandler={increaseHandler}
-                                    decreaseHandler={decreaseHandler}
-                                    value={valueBetweenStart}
-                                    name={name + 'BetweenStart'}
-                                    changeHandler={changeHandler}
+                                    setHandler={setHandler}
+                                    value={regulatedValues[2]}
+                                    name={regulatedNames[2]}
+                                    min={1}
                                 />
                                 and
                                         <Regulator
-                                    increaseHandler={increaseHandler}
-                                    decreaseHandler={decreaseHandler}
-                                    value={valueBetweenEnd}
-                                    name={name + 'BetweenEnd'}
-                                    changeHandler={changeHandler}
+                                    setHandler={setHandler}
+                                    value={regulatedValues[3]}
+                                    name={regulatedNames[3]}
+                                    min={1}
                                 />
                             </span>
                         </label>

@@ -39,6 +39,11 @@ input .with-gap {
   display: inline;
 }
 
+.select-element {
+  margin-left: 8px;
+  margin-right: 8px;
+}
+
 .select-element input[type=text] {
   height: 1rem;
   margin-bottom: 0;
@@ -47,4 +52,20 @@ input .with-gap {
   margin:0;
   padding:0;
 
+}
+
+.option .afterSelect {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  height: 25px;
+  line-height: 25px;
+  font-size: 1rem;
+  -webkit-transition: .28s ease;
+  transition: .28s ease;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
+  color: #9e9e9e;          
 }
